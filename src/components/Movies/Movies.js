@@ -7,12 +7,12 @@ import { getSearchedMoviesSelector } from "../../redux-manager/Favorites/selecto
 const Movies = () => {
   const searchedMovies = useSelector(getSearchedMoviesSelector);
   const searchedMoviesArray = searchedMovies[searchedMovies.length - 1];
-  const filtredSearchArray = searchedMoviesArray?.filter(movie => movie.Poster != 'N/A')
-  const [movies, setMovies] = useState(filtredSearchArray);
+  // const filtredSearchArray = searchedMoviesArray?.filter(movie => movie.Poster != 'N/A')
+  const [movies, setMovies] = useState(searchedMoviesArray);
 
   return (
     <ul className="movies">
-      {filtredSearchArray?.map((movie, index) =>
+      {searchedMoviesArray?.map((movie, index) =>
         (
           <li className="movies__item" key={index}>
             <MovieItem {...movie} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBox.css";
 import { useDispatch } from "react-redux";
-import { fetchMovieAction, searchMovieAction } from "../../redux-manager/Favorites/actions";
+import { fetchMovieAction } from "../../redux-manager/Favorites/actions";
 
 const SearchBox = () => {
   const [searchLine, setSearchLine] = useState("");

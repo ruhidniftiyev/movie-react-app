@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ListPage.css";
 import { useParams } from "react-router-dom";
-import Favorites from "../../components/Favorites/Favorites";
 import { useSelector } from "react-redux";
 import { getFavoriteMoviesSelector } from "../../redux-manager/Favorites/selectors";
 import { saveFavoritsMoviesSelector } from "../../redux-manager/Favorites/selectors";
@@ -10,7 +9,6 @@ const ListPage = (props) => {
   let favoriteList = useSelector(getFavoriteMoviesSelector);
   let listTitle = useSelector(saveFavoritsMoviesSelector);
   const lastElement = listTitle[listTitle.length - 1];
-  console.log(lastElement);
   
   const [movies, setMovies] = useState(favoriteList);
   const params = useParams()

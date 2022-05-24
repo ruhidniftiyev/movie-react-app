@@ -29,3 +29,13 @@
     opacity: 0.9;
     transition: all 0.2s linear;
 }
+
+.movie-item__no-viewed-poster {
+    min-width: 105px;
+    height: 150px;
+    background-color: #d3d3d3;
+    margin-right: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

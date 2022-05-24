@@ -1,26 +1,31 @@
+import { takeEvery, put, call } from "redux-saga/effects";
+import { FETCH_MOVIE, GET_LIST, REQUEST_MOVIES } from "../constants";
 import {
-  takeEvery,
-  put,
-  call,
-  select,
-  all,
-  takeLatest,
-} from "redux-saga/effects";
-import { ADD_MOVIE, DELETE_MOVIE, SEARCH_MOVIE, FETCH_MOVIE, REQUEST_MOVIES } from "../constants";
-import { addMovieAction, searchMovieAction, fetchMovieAction, saveListAction } from "../Favorites/actions";
-import { fetchMovies, requestFavoritesList } from "../REST.js";
-import { getFavoriteMoviesSelector } from "./selectors";
+  searchMovieAction,
+  postListAction,
+} from "../Favorites/actions";
+import { fetchMovies, requestMovies } from "../REST.js";
 
 function* workerFavorites(action) {
   try {
     const data = yield call(fetchMovies, action.payload);
-    const ac = data.Search
-    yield put(searchMovieAction(ac));
+    const dataSearch = data.Search;
+    yield put(searchMovieAction(dataSearch));
   } catch (err) {
     console.error("ERROR", err);
   }
 }
 
+function* workerSavedList(action) {
+  try {
+    const data = yield call(requestMovies, action.payload);
+    yield put(postListAction(data));
+  } catch (err) {
+    console.log("ERROR", err);
+  }
+}
+
 export default function* watcherList() {
   yield takeEvery(FETCH_MOVIE, workerFavorites);
+  yield takeEvery(REQUEST_MOVIES, workerSavedList);
 }
